@@ -9,12 +9,10 @@ public class HelloWorld {
             config.bundledPlugins.enableDevLogging()
         );
         // Описываем, что загрузится по адресу /
-        app.get("/hello", ctx -> {
-            var param = ctx.queryParam("name");
-            if (param != null)
-                ctx.result("Hello," + param + "!");
-            else
-                ctx.result("Hello, World!");
+        app.get("/users/{id}/post/{postId}", ctx -> {
+            var userId = ctx.pathParam("id");
+            var postId = ctx.pathParam("postId");
+            ctx.result("User Id: " + userId + " Post Id: " + postId);
         });
         app.start(7070); // Стартуем веб-сервер
     }
